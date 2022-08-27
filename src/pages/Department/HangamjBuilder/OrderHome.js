@@ -1,11 +1,11 @@
-import React, { useState, Fragment, useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "../../../components/Header";
+import React, { useState, Fragment, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../../../components/Header';
 
 function HangamjBuilder() {
   const [data, setData] = useState([]);
@@ -15,15 +15,15 @@ function HangamjBuilder() {
   }, []);
 
   const getDevices = async () => {
-    const response = await axios.get("http://192.168.10.25:5001/api/device");
+    const response = await axios.get('http://192.168.10.25:5001/api/device');
     if (response.status === 200) {
       setData(response.data);
     }
   };
   const onDeleteDevice = async (id) => {
-    if (window.confirm("are tou sure to delete")) {
+    if (window.confirm('are tou sure to delete')) {
       const response = await axios.delete(
-        "http://192.168.10.25:5001/api/device/${id}"
+        'http://192.168.10.25:5001/api/device/${id}'
       );
       if (response.status === 200) {
         toast.success(response.data);
@@ -31,33 +31,33 @@ function HangamjBuilder() {
       }
     }
   };
-  console.log("data=>", data);
+  console.log('data=>', data);
   return (
-    <div className="container">
+    <div>
       <Header />
       <h2>Захиалга хуудас</h2>
-      <Button href="/Orders" type="submit">
+      <Button href='/Orders' type='submit'>
         Шинэ захиалга
       </Button>
-      <div className="row">
-        <div className="col-mb-6">
+      <div className='row'>
+        <div className='col-mb-6'>
           <Table striped bordered hover>
             <thead>
               <tr>
                 <th> </th>
-                <th style={{ testAlign: "center" }}>#</th>
-                <th style={{ testAlign: "center" }}>Нэр</th>
-                <th style={{ testAlign: "center" }}>Үндсэн хэсэг</th>
-                <th style={{ testAlign: "center" }}>Захиалагч</th>
-                <th style={{ testAlign: "center" }}>Огноо</th>
-                <th style={{ testAlign: "center" }}>Төхөөрөмж</th>
-                <th style={{ testAlign: "center" }}>Төрөл</th>
-                <th style={{ testAlign: "center" }}>Сэлбэгийн дугаар</th>
-                <th style={{ testAlign: "center" }}>Материалын нэр</th>
-                <th style={{ testAlign: "center" }}>Тоо/Хэмжээ</th>
-                <th style={{ testAlign: "center" }}>Шаардлага</th>
-                <th style={{ testAlign: "center" }}>Тайлбар</th>
-                <th style={{ testAlign: "center" }}>Төлөв</th>
+                <th style={{ testAlign: 'center' }}>#</th>
+                <th style={{ testAlign: 'center' }}>Нэр</th>
+                <th style={{ testAlign: 'center' }}>Үндсэн хэсэг</th>
+                <th style={{ testAlign: 'center' }}>Захиалагч</th>
+                <th style={{ testAlign: 'center' }}>Огноо</th>
+                <th style={{ testAlign: 'center' }}>Төхөөрөмж</th>
+                <th style={{ testAlign: 'center' }}>Төрөл</th>
+                <th style={{ testAlign: 'center' }}>Сэлбэгийн дугаар</th>
+                <th style={{ testAlign: 'center' }}>Материалын нэр</th>
+                <th style={{ testAlign: 'center' }}>Тоо/Хэмжээ</th>
+                <th style={{ testAlign: 'center' }}>Шаардлага</th>
+                <th style={{ testAlign: 'center' }}>Тайлбар</th>
+                <th style={{ testAlign: 'center' }}>Төлөв</th>
               </tr>
             </thead>
             <tbody>
@@ -65,9 +65,9 @@ function HangamjBuilder() {
                 data.map((item, index) => {
                   return (
                     <tr key={index}>
-                      <th scope="row">{index + 1}</th>
+                      <th scope='row'>{index + 1}</th>
                       <th>
-                        <button type="button">Edit</button>
+                        <button type='button'>Edit</button>
                       </th>
                       <th>{item.oid}</th>
                       <th>{item.name}</th>
