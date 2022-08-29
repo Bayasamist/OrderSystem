@@ -13,14 +13,14 @@ const Header = () => {
   return (
    
 
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="primary" variant="dark">
     <Container>
       <Navbar.Brand href="#home">Багануур ХК</Navbar.Brand>
       {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav"> */}
         <Nav className="me-auto">
-          <Nav.Link href="/home">Нүүр хуудас</Nav.Link>
-          <Nav.Link href="/add">Шинэ хүсэлт</Nav.Link>
+          <Nav.Link href="/home">Төхөөрөмж test table</Nav.Link>
+          <Nav.Link href="/add">Төхөөрөмж нэмэх</Nav.Link>
           <Nav.Link href="/about">About</Nav.Link>
           <Nav.Link href="/view">View</Nav.Link>
           <Nav.Link href="/order">Order</Nav.Link>

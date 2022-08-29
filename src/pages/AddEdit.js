@@ -3,7 +3,6 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import "./AddEdit.css";
 import { toast } from "react-toastify";
-import Header from "../components/Header";
 
 const initialState = {
   oid: "",
@@ -90,7 +89,7 @@ const AddEdit = () => {
   };
   return (
     <div className="container">
-      <Header/>
+      
     <div style={{ marginTop: "100px" }}>
       <form
         style={{

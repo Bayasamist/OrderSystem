@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../../../components/Header';
+
 
 function HangamjBuilder() {
   const [data, setData] = useState([]);
@@ -33,12 +33,12 @@ function HangamjBuilder() {
   };
   console.log('data=>', data);
   return (
-    <div>
-      <Header />
+    <div className='container'>
+      
       <h2>Захиалга хуудас</h2>
-      <Button href='/Orders' type='submit'>
-        Шинэ захиалга
-      </Button>
+      <Link to="/order"><Button variant="outline-secondary" id="button-addon2">
+          Захиалга нэмэх
+            </Button> </Link>
       <div className='row'>
         <div className='col-mb-6'>
           <Table striped bordered hover>

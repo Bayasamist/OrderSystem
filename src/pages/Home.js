@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Header from "../components/Header";
+
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -32,7 +32,7 @@ const Home = () => {
   console.log("data=>", data);
   return (
     <div className="container">
-      <Header/>
+      
       <div style={{ marginTop: "150px" }}>
       <table className="styled-table">
         <thead>
