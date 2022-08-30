@@ -1,128 +1,92 @@
-import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import DatePicker from "react-datepicker";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import InputGroup from "react-bootstrap/InputGroup";
-import BootstrapDatePickerComponent from "./BootstrapDatePickerComponent";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
-import Table from "react-bootstrap/Table";
 
 
-const equipmentOrder = () => {
+const EquipmentOrder = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getDevices();
+  }, []);
+
+  const getDevices = async () => {
+    const response = await axios.get("http://192.168.10.25:5001/api/device");
+    if (response.status === 200) {
+      setData(response.data);
+    }
+  };
+  const onDeleteDevice = async (id) => {
+    if (window.confirm("are tou sure to delete")) {
+      const response = await axios.delete(
+        "http://192.168.10.25:5001/api/device/${id}"
+      );
+      if (response.status === 200) {
+        toast.success(response.data);
+        getDevices();
+      }
+    }
+  };
+  console.log("data=>", data);
   return (
-    
-    <div>
-      sasasas
-        <Container>
-        
-        <div
-          className="col-md-20 col-sm-20 col-sm-offset-4 col-xs-offset-2"
-          align="left"
-        >
-          
-                <Table striped bordered hover>
-                  <thead>
-                    <tr>
-                    <th> </th>
-                      <th>#</th>
-                      <th>Сэлбэгийн дугаар</th>
-                      <th>Хэмжих нэгж</th>
-                      <th>Тоо</th>
-                      <th>Шаардлага</th>
-                      <th>Тайлбар</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                    <th>
-                  <button type="button">Edit</button> 
-                  </th>
-                      <th>1</th>
-                      <th>Inspiron 1999555</th>
-                      <th>Ширхэг</th>
-                      <th>10</th>
-                      <th>144hz</th>
-                      <th>Агуулхад байхгүй</th>
-                    </tr>
-                    <tr>
-                    <th>
-                  <button type="button">Edit</button> 
-                  </th>
-                      <th>2</th>
-                      <th>Inspiron 1999555</th>
-                      <th>Ширхэг</th>
-                      <th>10</th>
-                      <th>144hz</th>
-                      <th>Агуулхад байхгүй</th>
-                    </tr>
-                    <tr>
-                    <th>
-                  <button type="button">Edit</button> 
-                  </th>
-                      <th>3</th>
-                      <th>Inspiron 1999555</th>
-                      <th>Ширхэг</th>
-                      <th>10</th>
-                      <th>144hz</th>
-                      <th>Агуулхад байхгүй</th>
-                    </tr>
-                    <tr>
-                    <th>
-                  <button type="button">Edit</button> 
-                  </th>
-                      <th>4</th>
-                      <th>Inspiron 1999555</th>
-                      <th>Ширхэг</th>
-                      <th>10</th>
-                      <th>144hz</th>
-                      <th>Агуулхад байхгүй</th>
-                    </tr>
-                    <tr>
-                    <th>
-                  <button type="button">Edit</button> 
-                  </th>
-                      <th>5</th>
-                      <th>Inspiron 1999555</th>
-                      <th>Ширхэг</th>
-                      <th>10</th>
-                      <th>144hz</th>
-                      <th>Агуулхад байхгүй</th>
-                    </tr>
-                    <tr>
-                    <th>
-                  <button type="button">Edit</button> 
-                  </th>
-                      <th>6</th>
-                      <th>Inspiron 1999555</th>
-                      <th>Ширхэг</th>
-                      <th>10</th>
-                      <th>144hz</th>
-                      <th>Агуулхад байхгүй</th>
-                    </tr>
-                  </tbody>
-                </Table>
-             </div>
+    <div className="container">
       
-      </Container>
+      <div style={{ marginTop: "150px" }}>
+      <table className="styled-table">
+        <thead>
+          <tr>
+            <th style={{ testAlign: "center" }}>No.</th>
+            <th style={{ testAlign: "center" }}>OID</th>
+            <th style={{ testAlign: "center" }}>name</th>
+            <th style={{ testAlign: "center" }}>description</th>
+            <th style={{ testAlign: "center" }}>department</th>
+            <th style={{ testAlign: "center" }}>optimisticLockField</th>
+            <th style={{ testAlign: "center" }}>gcrecord</th>
+            <th style={{ testAlign: "center" }}>departmentNavigation</th>
+            <th style={{ testAlign: "center" }}>orderRequestDevices</th>
+            <th style={{ testAlign: "center" }}>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data &&
+            data.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{item.oid}</td>
+                  <td>{item.name}</td>
+                  <td>{item.description}</td>
+                  <td>{item.department}</td>
+                  <td>{item.optimisticLockField}</td>
+                  <td>{item.gcrecord}</td>
+                  <td>{item.departmentNavigation}</td>
+                  <td>{item.orderRequestDevices}</td>
+                  <td>
+                    <Link to={"/update/${item.id}"}>
+                      <button className="btn btn-edit">Edit</button>
+                    </Link>
+
+                    <button
+                      className="btn btn-delete"
+                      onClick={() => onDeleteDevice(item.id)}
+                    >
+                      Delete
+                    </button>
+
+                    <Link to={"/view/${item.id}"}>
+                      <button className="btn btn-view">View</button>
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+      </div>
     </div>
-     
-    
-    
-  )
-}
+  );
+};
 
-export default equipmentOrder
-
-
-
-
+export default EquipmentOrder;

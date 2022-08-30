@@ -1,29 +1,30 @@
-import React, { useState, Fragment, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import React, { useState, Fragment, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Card from "react-bootstrap/Card";
+import Collapse from "react-bootstrap/Collapse";
 
 function HangamjBuilder() {
   const [data, setData] = useState([]);
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     getDevices();
   }, []);
 
   const getDevices = async () => {
-    const response = await axios.get('http://192.168.10.25:5001/api/device');
+    const response = await axios.get("http://192.168.10.25:5001/api/device");
     if (response.status === 200) {
       setData(response.data);
     }
   };
   const onDeleteDevice = async (id) => {
-    if (window.confirm('are tou sure to delete')) {
+    if (window.confirm("are tou sure to delete")) {
       const response = await axios.delete(
-        'http://192.168.10.25:5001/api/device/${id}'
+        "http://192.168.10.25:5001/api/device/${id}"
       );
       if (response.status === 200) {
         toast.success(response.data);
@@ -31,33 +32,34 @@ function HangamjBuilder() {
       }
     }
   };
-  console.log('data=>', data);
+  console.log("data=>", data);
   return (
-    <div className='container'>
-      
+    <div className="container">
       <h2>Захиалга хуудас</h2>
-      <Link to="/order"><Button variant="outline-secondary" id="button-addon2">
+      <Link to="/order">
+        <Button variant="outline-secondary" id="button-addon2">
           Захиалга нэмэх
-            </Button> </Link>
-      <div className='row'>
-        <div className='col-mb-6'>
+        </Button>{" "}
+      </Link>
+      <div className="row">
+        <div className="col-mb-6">
           <Table striped bordered hover>
             <thead>
-              <tr>
+              <tr style={{ testAlign: "center" }}>
                 <th> </th>
-                <th style={{ testAlign: 'center' }}>#</th>
-                <th style={{ testAlign: 'center' }}>Нэр</th>
-                <th style={{ testAlign: 'center' }}>Үндсэн хэсэг</th>
-                <th style={{ testAlign: 'center' }}>Захиалагч</th>
-                <th style={{ testAlign: 'center' }}>Огноо</th>
-                <th style={{ testAlign: 'center' }}>Төхөөрөмж</th>
-                <th style={{ testAlign: 'center' }}>Төрөл</th>
-                <th style={{ testAlign: 'center' }}>Сэлбэгийн дугаар</th>
-                <th style={{ testAlign: 'center' }}>Материалын нэр</th>
-                <th style={{ testAlign: 'center' }}>Тоо/Хэмжээ</th>
-                <th style={{ testAlign: 'center' }}>Шаардлага</th>
-                <th style={{ testAlign: 'center' }}>Тайлбар</th>
-                <th style={{ testAlign: 'center' }}>Төлөв</th>
+                <th>#</th>
+                <th>Нэр</th>
+                <th>Үндсэн хэсэг</th>
+                <th>Захиалагч</th>
+                <th>Огноо</th>
+                <th>Төхөөрөмж</th>
+                <th>Төрөл</th>
+                <th>Сэлбэгийн дугаар</th>
+                <th>Материалын нэр</th>
+                <th>Тоо/Хэмжээ</th>
+                <th>Шаардлага</th>
+                <th>Тайлбар</th>
+                <th>Төлөв</th>
               </tr>
             </thead>
             <tbody>
@@ -65,9 +67,22 @@ function HangamjBuilder() {
                 data.map((item, index) => {
                   return (
                     <tr key={index}>
-                      <th scope='row'>{index + 1}</th>
+                      <th scope="row">{index + 1}</th>
                       <th>
-                        <button type='button'>Edit</button>
+                        <Link to={"/update/${item.id}"}>
+                          <button variant="outline-secondary" id="button-addon2">Edit</button>
+                        </Link>
+
+                        <button
+                          variant="outline-secondary" id="button-addon2"
+                          onClick={() => onDeleteDevice(item.id)}
+                        >
+                          Delete
+                        </button>
+
+                        <Link to={"/view/${item.id}"}>
+                          <button className="btn btn-view">View</button>
+                        </Link>
                       </th>
                       <th>{item.oid}</th>
                       <th>{item.name}</th>

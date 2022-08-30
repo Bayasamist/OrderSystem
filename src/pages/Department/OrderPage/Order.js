@@ -16,8 +16,9 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Table from "react-bootstrap/Table";
 
-import equipmentOrder from "./equipmentOrder";
-import acceptedOrder from "./acceptedOrder";
+
+import EquipmentOrder from "./EquipmentOrder";
+import acceptedOrder from "./AcceptedOrder";
 import { BsPlusLg } from "react-icons/bs";
 import { Typeahead } from "react-bootstrap-typeahead";
 import Select from "react-select";
@@ -157,15 +158,15 @@ function OrderPage() {
             </Button> </Link>
 
           <Tabs
-            defaultActiveKey="equipmentOrder"
+            defaultActiveKey="EquipmentOrder"
             id="fill-tab-example"
             className="mb-3"
             fill
           >
-            <Tab eventKey="equipmentOrder" title="Захиалсан">
+            <Tab eventKey="EquipmentOrder" title="Захиалсан">
               <div>
                 <Container>
-                  <div
+                  <divs
                     className="col-md-20 col-sm-20 col-sm-offset-4 col-xs-offset-2"
                     align="left"
                   >
@@ -174,65 +175,81 @@ function OrderPage() {
                         <tr>
                           <th> </th>
                           <th>#</th>
-                          <th>Сэлбэгийн дугаар</th>
-                          <th>Хэмжих нэгж</th>
-                          <th>Тоо</th>
-                          <th>Шаардлага</th>
-                          <th>Тайлбар</th>
+                          <th>Огноо</th>
+                          <th>Захиалгын дугаар</th>
+                          <th>Үндсэн хэсэг</th>
+                          <th>Захиалагч</th>
+                          <th>Нэр</th>
+                          <th>Төхөөрөмж</th>
+                          <th>Төрөл</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <th>
-                            <button type="button">Edit</button>
+                          <Link to="/equipmentOrder"><Button variant="outline-secondary" id="button-addon2">
+          View
+            </Button> </Link>
                           </th>
                           <th>1</th>
-                          <th>Inspiron 1999555</th>
-                          <th>Ширхэг</th>
-                          <th>10</th>
-                          <th>144hz</th>
-                          <th>Агуулхад байхгүй</th>
+                          <th>2022-08-30</th>
+                          <th>25</th>
+                          <th>ТАМАХ</th>
+                          <th> </th>
+                          <th>Баяр</th>
+                          <th> ЛЕД гэрэл</th>
+                          <th>Энгийн</th>
                         </tr>
                       </tbody>
                     </Table>
-                  </div>
+                  </divs>
                 </Container>
               </div>
             </Tab>
-            <Tab eventKey="acceptedOrder" title="Зөвшөөрсөн">
-              <Container>
-                <div
-                  className="col-md-20 col-sm-20 col-sm-offset-4 col-xs-offset-2"
-                  align="left"
-                >
-                  <Table striped bordered hover>
-                    <thead>
-                      <tr>
-                        <th> </th>
-                        <th>#</th>
-                        <th>Сэлбэгийн дугаар</th>
-                        <th>Хэмжих нэгж</th>
-                        <th>Тоо</th>
-                        <th>Шаардлага</th>
-                        <th>Тайлбар</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>
-                          <button type="button">Edit</button>
-                        </th>
-                        <th>1</th>
-                        <th>Inspiron 1999555</th>
-                        <th>Ширхэг</th>
-                        <th>10</th>
-                        <th>144hz</th>
-                        <th>Агуулхад байхгүй</th>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </div>
-              </Container>
+            <Tab eventKey="AcceptedOrder" title="Зөвшөөрсөн">
+              
+              <div>
+                <Container>
+                  <divs
+                    className="col-md-20 col-sm-20 col-sm-offset-4 col-xs-offset-2"
+                    align="left"
+                  >
+                    <Table striped bordered hover>
+                      <thead>
+                        <tr>
+                          <th> </th>
+                          <th>#</th>
+                          <th>Огноо</th>
+                          <th>Захиалгын дугаар</th>
+                          <th>Үндсэн хэсэг</th>
+                          <th>Захиалагч</th>
+                          <th>Нэр</th>
+                          <th>Төхөөрөмж</th>
+                          <th>Төрөл</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>
+                          <Link to="/acceptedOrder"><Button variant="outline-secondary" id="button-addon2">
+          View
+            </Button> </Link>
+                          </th>
+                          <th>1</th>
+                          <th>2022-08-30</th>
+                          <th>25</th>
+                          <th>ТАМАХ</th>
+                          <th> </th>
+                          <th>Баяр</th>
+                          <th> ЛЕД гэрэл</th>
+                          <th>Энгийн</th>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </divs>
+                </Container>
+              </div>
+             
             </Tab>
           </Tabs>
         </div>

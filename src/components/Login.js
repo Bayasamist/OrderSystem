@@ -32,7 +32,7 @@ const Login = (props) => {
       // const res = await axios.post(API_URL, user);
       // localStorage.setItem('token', JSON.stringify(res.data));
       console.log('here');
-      navigate('../home', { replace: true });
+      navigate('../home', { replace: false });
     } catch (e) {
       console.log(e);
     }
