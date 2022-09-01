@@ -16,7 +16,6 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Table from "react-bootstrap/Table";
 
-
 import EquipmentOrder from "./EquipmentOrder";
 import acceptedOrder from "./AcceptedOrder";
 import { BsPlusLg } from "react-icons/bs";
@@ -45,7 +44,6 @@ function OrderPage() {
   const orderType = [
     { label: "Энгийн", value: 1 },
     { label: "Яаралтай", value: 2 },
-   
   ];
 
   const orderStatus = [
@@ -54,12 +52,10 @@ function OrderPage() {
     { label: "Төлбөр хийгдсэн нийлүүлэлт хүлээгдэж байна ", value: 3 },
     { label: "Олдоогүй байгаа", value: 4 },
     { label: "Нийлүүлсэн", value: 5 },
-   
   ];
 
   return (
     <div className="container" align="center">
-      
       <h2>Бараа материалын захиалга</h2>
       <h4 align="left">Ерөнхий мэдээлэл</h4>
       <Container>
@@ -120,11 +116,10 @@ function OrderPage() {
 
                 <Form.Group className="mb-2">
                   <Form.Label htmlFor="TextInput">ТӨРӨЛ</Form.Label>
-                 
-                    <div className="mb-2">
-                      <Select options={orderType} />
-                    </div>
-                  
+
+                  <div className="mb-2">
+                    <Select options={orderType} />
+                  </div>
                 </Form.Group>
 
                 <Form.Group className="mb-2">
@@ -141,8 +136,8 @@ function OrderPage() {
                 <Form.Group className="mb-2">
                   <Form.Label htmlFor="TextInput">ТӨЛӨВ</Form.Label>
                   <div className="mb-2">
-                      <Select options={orderStatus} />
-                    </div>
+                    <Select options={orderStatus} />
+                  </div>
                 </Form.Group>
               </Form>
             </div>
@@ -153,9 +148,11 @@ function OrderPage() {
           align="left"
         >
           <h4 align="left">Захиалга нэмэх</h4>
-          <Link to="/newOrderZahialsanTable"><Button variant="outline-secondary" id="button-addon2">
-          Захиалга нэмэх
-            </Button> </Link>
+          <Link to="/newOrderZahialsanTable">
+            <Button variant="outline-secondary" id="button-addon2">
+              Захиалга нэмэх
+            </Button>{" "}
+          </Link>
 
           <Tabs
             defaultActiveKey="EquipmentOrder"
@@ -187,9 +184,14 @@ function OrderPage() {
                       <tbody>
                         <tr>
                           <th>
-                          <Link to="/equipmentOrder"><Button variant="outline-secondary" id="button-addon2">
-          View
-            </Button> </Link>
+                            <Link to="/equipmentOrder">
+                              <Button
+                                variant="outline-secondary"
+                                id="button-addon2"
+                              >
+                                View
+                              </Button>{" "}
+                            </Link>
                           </th>
                           <th>1</th>
                           <th>2022-08-30</th>
@@ -207,7 +209,6 @@ function OrderPage() {
               </div>
             </Tab>
             <Tab eventKey="AcceptedOrder" title="Зөвшөөрсөн">
-              
               <div>
                 <Container>
                   <divs
@@ -231,9 +232,14 @@ function OrderPage() {
                       <tbody>
                         <tr>
                           <th>
-                          <Link to="/acceptedOrder"><Button variant="outline-secondary" id="button-addon2">
-          View
-            </Button> </Link>
+                            <Link to="/acceptedOrder">
+                              <Button
+                                variant="outline-secondary"
+                                id="button-addon2"
+                              >
+                                View
+                              </Button>{" "}
+                            </Link>
                           </th>
                           <th>1</th>
                           <th>2022-08-30</th>
@@ -249,7 +255,6 @@ function OrderPage() {
                   </divs>
                 </Container>
               </div>
-             
             </Tab>
           </Tabs>
         </div>

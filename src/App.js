@@ -19,6 +19,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import AcceptedOrder from '../src/pages/Department/OrderPage/AcceptedOrder';
 import "react-bootstrap-typeahead/css/Typeahead.css";
+import ReactTable from 'react-table';
 
 function App() {
   return (
@@ -49,14 +50,14 @@ function App() {
             <Route path="/order" element={<OrderPage />} />
           </Route>
           <Route path="/orderhome" element={<PrivateOutlet />}>
-            {" "}
+           
             <Route path="/orderhome" element={<OrderHome />} />
           </Route>
           <Route path="/newOrderZahialsanTable" element={<PrivateOutlet />}>
             <Route
               path="/newOrderZahialsanTable"
               element={<NewOrderZahialsanTable />}
-            />{" "}
+            />
           </Route>
 
           <Route path="/equipmentOrder" element={<PrivateOutlet />}>

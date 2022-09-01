@@ -13,7 +13,7 @@ const Home = () => {
   }, []);
 
   const getDevices = async () => {
-    const response = await axios.get("http://192.168.10.25:5001/api/device");
+    const response = await axios.get("http://192.168.11.9:8081/api/device");
     if (response.status === 200) {
       setData(response.data);
     }
@@ -21,7 +21,7 @@ const Home = () => {
   const onDeleteDevice = async (id) => {
     if (window.confirm("are tou sure to delete")) {
       const response = await axios.delete(
-        "http://192.168.10.25:5001/api/device/${id}"
+        "http://192.168.11.9:8081/api/device/${id}"
       );
       if (response.status === 200) {
         toast.success(response.data);

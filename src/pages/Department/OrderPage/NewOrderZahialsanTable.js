@@ -41,7 +41,7 @@ import Header from "../../../components/Header";
       
         const getSingleDevice = async (id) => {
           const response = await axios.get(
-            "http://192.168.10.25:5001/api/device/${id}"
+            "http://192.168.11.9:8081/api/device/${id}"
           );
           if (response.status === 200) {
             setState({ ...response.data[0] });
@@ -50,7 +50,7 @@ import Header from "../../../components/Header";
       
         const addDevice = async (data) => {
           const response = await axios.post(
-            "http://192.168.10.25:5001/api/device",
+            "http://192.168.11.9:8081/api/device",
             data
           );
           if (response.status === 200) {
@@ -60,7 +60,7 @@ import Header from "../../../components/Header";
       
         const updateDevice = async (data, id) => {
           const response = await axios.put(
-            "http://192.168.10.25:5001/api/device/${id}",
+            "http://192.168.11.9:8081/api/device/${id}",
             data
           );
           if (response.status === 200) {

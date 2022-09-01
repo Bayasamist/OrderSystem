@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -13,7 +13,7 @@ const EquipmentOrder = () => {
   }, []);
 
   const getDevices = async () => {
-    const response = await axios.get("http://192.168.10.25:5001/api/device");
+    const response = await axios.get("http://192.168.11.8:22222/api/OrderRequestDevices");
     if (response.status === 200) {
       setData(response.data);
     }
@@ -21,7 +21,7 @@ const EquipmentOrder = () => {
   const onDeleteDevice = async (id) => {
     if (window.confirm("are tou sure to delete")) {
       const response = await axios.delete(
-        "http://192.168.10.25:5001/api/device/${id}"
+        "http://192.168.11.8:22222/api/OrderRequestDevices/${id}"
       );
       if (response.status === 200) {
         toast.success(response.data);
@@ -37,7 +37,7 @@ const EquipmentOrder = () => {
       <table className="styled-table">
         <thead>
           <tr>
-            <th style={{ testAlign: "center" }}>No.</th>
+            
             <th style={{ testAlign: "center" }}>OID</th>
             <th style={{ testAlign: "center" }}>name</th>
             <th style={{ testAlign: "center" }}>description</th>
@@ -45,37 +45,37 @@ const EquipmentOrder = () => {
             <th style={{ testAlign: "center" }}>optimisticLockField</th>
             <th style={{ testAlign: "center" }}>gcrecord</th>
             <th style={{ testAlign: "center" }}>departmentNavigation</th>
-            <th style={{ testAlign: "center" }}>orderRequestDevices</th>
+            
             <th style={{ testAlign: "center" }}>action</th>
           </tr>
         </thead>
         <tbody>
           {data &&
-            data.map((item, index) => {
+            data.map((OrderRequestParts) => {
               return (
-                <tr key={index}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{item.oid}</td>
-                  <td>{item.name}</td>
-                  <td>{item.description}</td>
-                  <td>{item.department}</td>
-                  <td>{item.optimisticLockField}</td>
-                  <td>{item.gcrecord}</td>
-                  <td>{item.departmentNavigation}</td>
-                  <td>{item.orderRequestDevices}</td>
+                <tr >
+                 
+                  <td>{OrderRequestParts.OID}</td>
+                  <td>{OrderRequestParts.OrderRequest}</td>
+                  <td>{OrderRequestParts.PartName}</td>
+                  <td>{OrderRequestParts.PartName}</td>
+                  <td>{OrderRequestParts.Requirement}</td>
+                  <td>{OrderRequestParts.Comment}</td>
+                  <td>{OrderRequestParts.Meashure}</td>
+                 
                   <td>
-                    <Link to={"/update/${item.id}"}>
+                    <Link to={"/update/${OrderRequestParts.id}"}>
                       <button className="btn btn-edit">Edit</button>
                     </Link>
 
                     <button
                       className="btn btn-delete"
-                      onClick={() => onDeleteDevice(item.id)}
+                      onClick={() => onDeleteDevice(OrderRequestParts.id)}
                     >
                       Delete
                     </button>
 
-                    <Link to={"/view/${item.id}"}>
+                    <Link to={"/view/${OrderRequestParts.id}"}>
                       <button className="btn btn-view">View</button>
                     </Link>
                   </td>
