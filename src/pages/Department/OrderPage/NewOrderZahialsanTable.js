@@ -3,16 +3,17 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Header from "../../../components/Header";
+import "../../AddEdit.css";
 
     const initialState = {
         oid: "",
-        name: "",
-        description: "",
-        department: "",
-        optimisticLockField: "",
-        gcrecord: "",
-        departmentNavigation: "",
-        orderRequestDevices: "",
+        DeviceNumber: "",
+        Quantity: "",
+        Meashure: "",
+        PartNumber: "",
+        PartName: "",
+        Requirement: "",
+        Comment: "",
       };
       
       const NewOrderZahialsanTable = () => {
@@ -20,13 +21,13 @@ import Header from "../../../components/Header";
       
         const {
           oid,
-          name,
-          description,
-          department,
-          optimisticLockField,
-          gcrecord,
-          departmentNavigation,
-          orderRequestDevices,
+          DeviceNumber,
+          Quantity,
+          Meashure,
+          PartNumber,
+          PartName,
+          Requirement,
+          Comment,
         } = initialState;
       
         const history = useNavigate();
@@ -70,7 +71,7 @@ import Header from "../../../components/Header";
       
         const handleSubmit = (e) => {
           e.preventDefault();
-          if (name || description || department) {
+          if (DeviceNumber || Quantity || Meashure || PartNumber || PartName  || Requirement || Comment) {
             toast.error("Please provide value into each input filed");
           } else {
             if (!id) {
@@ -100,35 +101,72 @@ import Header from "../../../components/Header";
         }}
         onSubmit={handleSubmit}
       >
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">DeviceNumber</label>
         <input
           type="text"
-          id="name"
-          name="name"
-          placeholder="Enter Name..."
+          id="DeviceNumber"
+          name="DeviceNumber"
+          placeholder="Enter DeviceNumber..."
           onChange={handleInputChange}
-          value={name}
+          value={DeviceNumber}
         />
 
-        <label htmlFor="description">Name</label>
+        <label htmlFor="description">Quantity</label>
         <input
           type="text"
-          id="description"
-          name="description"
-          placeholder="Enter description..."
+          id="Quantity"
+          name="Quantity"
+          placeholder="Enter Quantity..."
           onChange={handleInputChange}
-          value={name}
+          value={Quantity}
         />
 
-        <label htmlFor="department">Name</label>
+        <label htmlFor="department">Meashure</label>
         <input
           type="text"
-          id="department"
-          name="department"
-          placeholder="Enter department..."
+          id="Meashure"
+          name="Meashure"
+          placeholder="Enter Meashure..."
           onChange={handleInputChange}
-          value={name}
+          value={Meashure}
         />
+ <label htmlFor="department">PartNumber</label>
+        <input
+          type="text"
+          id="PartNumber"
+          name="PartNumber"
+          placeholder="Enter PartNumber..."
+          onChange={handleInputChange}
+          value={PartNumber}
+        />
+         <label htmlFor="department">PartName</label>
+        <input
+          type="text"
+          id="PartName"
+          name="PartName"
+          placeholder="Enter PartName..."
+          onChange={handleInputChange}
+          value={PartName}
+        />
+         <label htmlFor="department">Requirement</label>
+        <input
+          type="text"
+          id="Requirement"
+          name="Requirement"
+          placeholder="Enter Requirement..."
+          onChange={handleInputChange}
+          value={Requirement}
+        />
+         <label htmlFor="department">Comment</label>
+        <input
+          type="text"
+          id="Comment"
+          name="Comment"
+          placeholder="Enter Comment..."
+          onChange={handleInputChange}
+          value={Comment}
+        />
+        
         <input type="submit" value={id ? "Update" : "Add"} />
       </form>
     </div>

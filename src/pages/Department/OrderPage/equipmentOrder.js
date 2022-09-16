@@ -57,7 +57,7 @@ const EquipmentOrder = () => {
     const paginatedData = _(data)/slice(startIndex).take(pageSize).value();
     setpaginatedData(paginatedData)
   };
-  
+
   return (
     <div className="container">
       <div className="col-mb-6">
@@ -82,12 +82,13 @@ const EquipmentOrder = () => {
                   <tr>
                     <td>
                       <Link to={"/update/${OrderRequestParts.id}"}>
-                        <Button variant="outline-secondary" id="button-addon2">
+                        <Button style={{color: 'blue'}}
+                        variant="outline-secondary" id="button-addon2">
                           <BsPencilSquare />
                         </Button>
                       </Link>
 
-                      <Button
+                      <Button style={{color: 'red'}}
                         variant="outline-secondary"
                         id="button-addon2"
                         onClick={() => onDeleteDevice(OrderRequestParts.id)}
@@ -96,7 +97,8 @@ const EquipmentOrder = () => {
                       </Button>
 
                       <Link to={"/view/${OrderRequestParts.id}"}>
-                        <Button variant="outline-secondary" id="button-addon2">
+                        <Button style={{color: 'green'}}
+                        variant="outline-secondary" id="button-addon2">
                           <BsFillGridFill />
                         </Button>
                       </Link>

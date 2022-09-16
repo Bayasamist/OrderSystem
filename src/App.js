@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import AddEdit from "./pages/AddEdit";
+import OrderEdit from "./pages/OrderEdit";
 import Home from "./pages/Home";
 import View from "./pages/View";
 import About from "./pages/About";
@@ -33,10 +33,10 @@ function App() {
             <Route path="/home" element={<Home />} />
           </Route>
           <Route path="/add" element={<PrivateOutlet />}>
-            <Route path="/add" element={<AddEdit />} />
+            <Route path="/add" element={<OrderEdit />} />
           </Route>
           <Route path="/update/:id" element={<PrivateOutlet />}>
-            <Route path="/update/:id" element={<AddEdit />} />
+            <Route path="/update/:id" element={<OrderEdit />} />
           </Route>
 
           <Route path="/view/:id" element={<PrivateOutlet />}>

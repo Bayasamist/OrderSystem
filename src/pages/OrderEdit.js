@@ -1,3 +1,144 @@
+// import React, { useState, useEffect } from "react";
+// import { useNavigate, useLocation, useParams } from "react-router-dom";
+// import axios from "axios";
+// import "./AddEdit.css";
+// import { toast } from "react-toastify";
+
+// const initialState = {
+//   oid: "",
+//   name: "",
+//   description: "",
+//   department: "",
+//   optimisticLockField: "",
+//   gcrecord: "",
+//   departmentNavigation: "",
+//   orderRequestDevices: "",
+// };
+
+// const AddEdit = () => {
+//   const [state, setState] = useState(initialState);
+
+//   const {
+//     oid,
+//     name,
+//     description,
+//     department,
+//     optimisticLockField,
+//     gcrecord,
+//     departmentNavigation,
+//     orderRequestDevices,
+//   } = initialState;
+
+//   const history = useNavigate();
+
+//   const { id } = useParams();
+
+//   useEffect(() => {
+//     if (id) {
+//       getSingleDevice(id);
+//     }
+//   }, [id]);
+
+//   const getSingleDevice = async (id) => {
+//     const response = await axios.get(
+//       "http://192.168.11.9:8081/api/device/${id}"
+//     );
+//     if (response.status === 200) {
+//       setState({ ...response.data[0] });
+//     }
+//   };
+
+//   const addDevice = async (data) => {
+//     const response = await axios.post(
+//       "http://192.168.11.9:8081/api/device",
+//       data
+//     );
+//     if (response.status === 200) {
+//       toast.success(response.data);
+//     }
+//   };
+
+//   const updateDevice = async (data, id) => {
+//     const response = await axios.put(
+//       "http://192.168.11.9:8081/api/device/${id}",
+//       data
+//     );
+//     if (response.status === 200) {
+//       toast.success(response.data);
+//     }
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (name || description || department) {
+//       toast.error("Please provide value into each input filed");
+//     } else {
+//       if (!id) {
+//         addDevice(state);
+//       } else {
+//         updateDevice(state, id);
+//       }
+
+//       setTimeout(() => history.push("/"), 500);
+//     }
+//   };
+
+//   const handleInputChange = (e) => {
+//     let { name, value } = e.target;
+//     setState({ ...state, [name]: value });
+//   };
+//   return (
+//     <div className="container">
+      
+//     <div style={{ marginTop: "100px" }}>
+//       <form
+//         style={{
+//           margin: "auto",
+//           padding: "15px",
+//           maxWidth: "400px",
+//           alignContent: "center",
+//         }}
+//         onSubmit={handleSubmit}
+//       >
+//         <label htmlFor="name">Name</label>
+//         <input
+//           type="text"
+//           id="name"
+//           name="name"
+//           placeholder="Enter Name..."
+//           onChange={handleInputChange}
+//           value={name}
+//         />
+
+//         <label htmlFor="description">Name</label>
+//         <input
+//           type="text"
+//           id="description"
+//           name="description"
+//           placeholder="Enter description..."
+//           onChange={handleInputChange}
+//           value={name}
+//         />
+
+//         <label htmlFor="department">Name</label>
+//         <input
+//           type="text"
+//           id="department"
+//           name="department"
+//           placeholder="Enter department..."
+//           onChange={handleInputChange}
+//           value={name}
+//         />
+//         <input type="submit" value={id ? "Update" : "Add"} />
+//       </form>
+//     </div>
+//     </div>
+
+//   );
+// };
+
+// export default AddEdit;
+
 import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -8,23 +149,98 @@ import DatePicker from "react-datepicker";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import InputGroup from "react-bootstrap/InputGroup";
-import BootstrapDatePickerComponent from "./BootstrapDatePickerComponent";
+import BootstrapDatePickerComponent from "../pages/Department/OrderPage/BootstrapDatePickerComponent";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Table from "react-bootstrap/Table";
-import EquipmentOrder from "./EquipmentOrder";
-import acceptedOrder from "./AcceptedOrder";
+import EquipmentOrder from "../pages/Department/OrderPage/EquipmentOrder";
+import acceptedOrder from "../pages/Department/OrderPage//AcceptedOrder";
 import { BsPlusLg } from "react-icons/bs";
 import { Typeahead } from "react-bootstrap-typeahead";
 import Select from "react-select";
 import _, { slice } from "lodash";
 import Pagination from "react-bootstrap/Pagination";
+import OrderPage from './Department/OrderPage/Order';
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 const pageSize = 10;
 
-function OrderPage() {
+const initialState = {
+    OID: "",
+      OrderName: "",
+      Department: "",
+      Employee: "",
+      OrderDate: "",
+      Device: "",
+      OrderType: "",
+      OrderNumber: "",
+      OrderStatus: "",
+    };
+
+function OrderEdit() {
+     const [state, setState] = useState(initialState);
+   
+      const {
+        OID,
+        OrderName,
+        Department,
+        Employee,
+        OrderDate,
+        Device,
+        OrderType,
+        OrderNumber,
+        OrderStatus,
+      } = initialState;
+      const history = useNavigate();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      getSingleDevice(id);
+    }
+  }, [id]);
+
+  const getSingleDevice = async (id) => {
+    const response = await axios.get(
+      "http://192.168.11.8:22222/api/OrderRequestDevices/${id}"
+    );
+    if (response.status === 200) {
+      setState({ ...response.data[0] });
+    }
+  };
+  const updateDevice = async (data, id) => {
+        const response = await axios.put(
+          "http://192.168.11.8:22222/api/OrderRequestDevices/${id}",
+          data
+        );
+        if (response.status === 200) {
+          toast.success(response.data);
+        }
+      };
+      const handleSubmit = (e) => {
+            e.preventDefault();
+            if (OrderName || Department || Employee || OrderDate || Device || OrderType || OrderNumber || OrderStatus) {
+              toast.error("Please provide value into each input filed");
+            } else {
+              if (!id) {
+               
+              } else {
+                updateDevice(state, id);
+              }
+        
+              setTimeout(() => history.push("/"), 500);
+            }
+          };
+        
+          const handleInputChange = (e) => {
+            let { OrderName, value } = e.target;
+            setState({ ...state, [OrderName]: value });
+          };
+
+
   const [data, setData] = useState([]);
   //const [selected, setSelected] = useState();
   const [paginatedData, setpaginatedData] = useState();
@@ -96,19 +312,28 @@ function OrderPage() {
     setpaginatedData(paginatedData);
   };
 
-  
   return (
     <div className="container" align="center">
       <h2>Бараа материалын захиалга</h2>
       <h4 align="left">Ерөнхий мэдээлэл</h4>
+      
       <Container>
         <Row>
           <Col xs={6}>
-            <div className="col-md-12 col-sm-12 col-sm-offset-4 col-xs-offset-2">
+            <div className="col-md-12 col-sm-12 col-sm-offset-4 col-xs-offset-2" onSubmit={handleSubmit}>
+            <label htmlFor="Department">Name</label>
+            <Typeahead
+                      id="Department"
+                      // onChange={setSingleSelections}
+                      options={data}
+                      onChange={handleInputChange}
+                      placeholder="Үндсэн хэсэг"
+                      value={Department}
+                    />
               <Form>
                 <fieldset disabled>
                   <Form.Group className="mb-2">
-                    <Form.Label htmlFor="disabledTextInput">
+                    <Form.Label htmlFor="Department">
                       ҮНДСЭН ХЭСЭГ
                     </Form.Label>
                     <Form.Control
@@ -345,4 +570,4 @@ function OrderPage() {
   );
 }
 
-export default OrderPage;
+export default OrderEdit;

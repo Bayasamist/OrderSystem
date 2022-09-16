@@ -18,14 +18,13 @@ import _, { slice } from "lodash";
 
 const pageSize = 10;
 
-const HangamjBuilder =() => {
+const HangamjBuilder = () => {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [paginatedData, setpaginatedData] = useState();
   const [currentPage, setcurrentPage] = useState(1);
   useEffect(() => {
     getDevices();
-    
   }, []);
 
   const getDevices = async () => {
@@ -51,15 +50,15 @@ const HangamjBuilder =() => {
 
   console.log("data=>", data);
 
-  const pageCount = data? Math.ceil(data.lenght/pageSize) :0;
-  if (pageCount ===1) return null;
-  const pages = _.range(1, pageCount+1);
- 
-  const pagination = (pageNo)=> {
+  const pageCount = data ? Math.ceil(data.lenght / pageSize) : 0;
+  if (pageCount === 1) return null;
+  const pages = _.range(1, pageCount + 1);
+
+  const pagination = (pageNo) => {
     setcurrentPage(pageNo);
-    const startIndex = (pageNo -1)*pageSize;
-    const paginatedData = _(data)/slice(startIndex).take(pageSize).value();
-    setpaginatedData(paginatedData)
+    const startIndex = (pageNo - 1) * pageSize;
+    const paginatedData = _(data) / slice(startIndex).take(pageSize).value();
+    setpaginatedData(paginatedData);
   };
 
   return (
@@ -96,15 +95,16 @@ const HangamjBuilder =() => {
                     <tr>
                       <th>
                         <Link to={"/update/${item.id}"}>
-                          <Button
+                          <Button style={{color: 'blue'}}
                             variant="outline-secondary"
                             id="button-addon2"
+                            
                           >
                             <BsPencilSquare />
                           </Button>
                         </Link>
 
-                        <Button
+                        <Button style={{color: 'red'}}
                           variant="outline-secondary"
                           id="button-addon2"
                           onClick={() => onDeleteDevice(item.id)}
@@ -113,7 +113,7 @@ const HangamjBuilder =() => {
                         </Button>
 
                         <Link to="/equipmentOrder">
-                          <Button
+                          <Button style={{color: 'green'}}
                             variant="outline-secondary"
                             id="button-addon2"
                           >
@@ -139,14 +139,17 @@ const HangamjBuilder =() => {
           </Table>
           <nav className="d-flex justify-content-center">
             <ul className="pagination">
-              {
-                pages.map((page)=>(
-                  <li className={
+              {pages.map((page) => (
+                <li
+                  className={
                     page === currentPage ? "page-item active" : "page-item"
-                  }>
-                    <p className="page-link" onClick={()=>pagination(page)}>{page}</p></li>
-                ))
-              }
+                  }
+                >
+                  <p className="page-link" onClick={() => pagination(page)}>
+                    {page}
+                  </p>
+                </li>
+              ))}
             </ul>
           </nav>
           {/* <Pagination>
@@ -170,6 +173,6 @@ const HangamjBuilder =() => {
       </div>
     </div>
   );
-}
+};
 
 export default HangamjBuilder;
