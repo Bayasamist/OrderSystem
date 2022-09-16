@@ -16,7 +16,7 @@ const View = () => {
 
   const getSingleDevice = async (id) => {
     const response = await axios.get(
-      "http://192.168.10.25:5001/api/device/${id}"
+      "http://192.168.11.8:22222/api/OrderRequestDevices/${id}"
     );
     if (response.status === 200) {
       setDevice({ ...response.data[0] });
@@ -38,19 +38,35 @@ const View = () => {
           <span>{device && device.oid}</span>
           <br />
           <br />
-          <strong>name: </strong>
-          <span>{device && device.name}</span>
+          <strong>Машины марк, дугаар: </strong>
+          <span>{device && device.DeviceNumber}</span>
           <br />
           <br />
-          <strong>description: </strong>
-          <span>{device && device.description}</span>
+          <strong>Тоо ширхэг: </strong>
+          <span>{device && device.Quantity}</span>
           <br />
           <br />
-          <strong>department: </strong>
-          <span>{device && device.department}</span>
+          <strong>Хэмжих нэгж: </strong>
+          <span>{device && device.Meashure}</span>
           <br />
           <br />
-          <Link to="/">
+          <strong>Сэлбэгийн дугаар: </strong>
+          <span>{device && device.PartNumber}</span>
+          <br />
+          <br />
+          <strong>Сэлбэгийн нэр: </strong>
+          <span>{device && device.PartName}</span>
+          <br />
+          <br />
+          <strong>Шаардлага: </strong>
+          <span>{device && device.Requirement}</span>
+          <br />
+          <br />
+          <strong>Тайлбар: </strong>
+          <span>{device && device.Comment}</span>
+          <br />
+          <br />
+          <Link to="/equipmentOrder">
             <button className="btn btn-edit">Go back</button>
           </Link>
         </div>
