@@ -3,7 +3,7 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Header from "../../../components/Header";
-import "../../AddEdit.css";
+import "./NewOrderZahialsanTable.css";
 
     const initialState = {
         oid: "",

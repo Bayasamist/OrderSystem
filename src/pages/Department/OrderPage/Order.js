@@ -75,7 +75,7 @@ function OrderPage() {
   const onDeleteDevice = async (id) => {
     if (window.confirm("are tou sure to delete")) {
       const response = await axios.delete(
-        "http://192.168.11.9:8081/api/device/${id}"
+        "http://192.168.11.9:8081/api/device/${OID}"
       );
       if (response.status === 200) {
         toast.success(response.data);
@@ -96,53 +96,58 @@ function OrderPage() {
     setpaginatedData(paginatedData);
   };
 
-  
   return (
     <div className="container" align="center">
       <h2>Бараа материалын захиалга</h2>
       <h4 align="left">Ерөнхий мэдээлэл</h4>
       <Container>
-        <Row>
+        <Row className="g-2">
           <Col xs={6}>
-            <div className="col-md-12 col-sm-12 col-sm-offset-4 col-xs-offset-2">
+            {/* <div className="col-md-12 col-sm-12 col-sm-offset-4 col-xs-offset-2"> */}
               <Form>
-                <fieldset disabled>
-                  <Form.Group className="mb-2">
+                <Form.Group className="mb-2">
+                  <fieldset disabled>
                     <Form.Label htmlFor="disabledTextInput">
                       ҮНДСЭН ХЭСЭГ
                     </Form.Label>
+                    <InputGroup className="mb-2">
                     <Form.Control
                       id="disabledTextInput"
                       placeholder="Үндсэн хэсэг"
                     />
-
+</InputGroup>
                     <Form.Label htmlFor="disabledTextInput">
                       ЗАХИАЛГАГЧ
                     </Form.Label>
+                    <InputGroup className="mb-2">
                     <Form.Control
                       id="disabledTextInput"
                       placeholder="Захиалагч"
                     />
-                  </Form.Group>
-                </fieldset>
-
-                <Form.Group className="mb-2">
+                    </InputGroup>
+                  </fieldset>
+                  
                   <BootstrapDatePickerComponent />
-                </Form.Group>
-                <Form.Group className="mb-2">
-                  <Form.Label>НЭР </Form.Label>
-                  <Form.Control type="text" rows={3} placeholder="Нэр" />
+               
+                  <Form.Label>НЭР </Form.Label>  
+                  <InputGroup className="mb-2">
+                    <Form.Control
+                      id="TextInput"
+                      placeholder="Нэр"
+                    />
+                    </InputGroup>
                 </Form.Group>
               </Form>
-            </div>
+            {/* </div> */}
           </Col>
           <Col xs={6}>
-            <div className="col-md-15 col-sm-15 col-sm-offset-4 col-xs-offset-2">
+            {/* <div className="col-md-12 col-sm-12 col-sm-offset-4 col-xs-offset-2"> */}
               <Form>
                 <Form.Group className="mb-2">
                   <Form.Label htmlFor="TextInput">ТӨХӨӨРӨМЖ</Form.Label>
 
                   <InputGroup className="mb-2">
+                    
                     <Typeahead
                       id="basic-typeahead-single"
                       // onChange={setSingleSelections}
@@ -151,18 +156,17 @@ function OrderPage() {
                       placeholder="choose a dog breed"
                       selected={selected}
                     />
-                    {/* <Button variant='outline-secondary' id='button-addon2'>
-                      <BsPlusLg />
-                    </Button> */}
+                   
                   </InputGroup>
+             
                 </Form.Group>
 
                 <Form.Group className="mb-2">
                   <Form.Label htmlFor="TextInput">ТӨРӨЛ</Form.Label>
 
-                  <div className="mb-2">
+                  {/* <div className="mb-2"> */}
                     <Select options={orderType} />
-                  </div>
+                  {/* </div> */}
                 </Form.Group>
 
                 <Form.Group className="mb-2">
@@ -178,23 +182,30 @@ function OrderPage() {
 
                 <Form.Group className="mb-2">
                   <Form.Label htmlFor="TextInput">ТӨЛӨВ</Form.Label>
-                  <div className="mb-2">
+                  {/* <div className="mb-2"> */}
                     <Select options={orderStatus} />
-                  </div>
+                  {/* </div> */}
                 </Form.Group>
               </Form>
-            </div>
+          
+            {/* </div> */}
+          
           </Col>
+       
         </Row>
+       
+        
+            
+
         <div
           className="col-md-20 col-sm-20 col-sm-offset-4 col-xs-offset-2"
           align="left"
         >
           <h4 align="left">Захиалга нэмэх</h4>
           <Link to="/newOrderZahialsanTable">
-            <Button variant="outline-secondary" id="button-addon2">
+            <Button variant="primary" id="button-addon2">
               Захиалга нэмэх
-            </Button>{" "}
+            </Button>
           </Link>
 
           <Tabs

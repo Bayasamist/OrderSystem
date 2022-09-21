@@ -36,10 +36,10 @@ const HangamjBuilder = () => {
       setpaginatedData(_(response.data).slice(0).take(pageSize).value());
     }
   };
-  const onDeleteDevice = async (id) => {
+  const onDeleteDevice = async (OID) => {
     if (window.confirm("are tou sure to delete")) {
       const response = await axios.delete(
-        "http://192.168.11.8:22222/api/OrderRequestDevices/${id}"
+        "http://192.168.11.8:22222/api/OrderRequestDevices/${OID}"
       );
       if (response.status === 200) {
         toast.success(response.data);
@@ -65,7 +65,7 @@ const HangamjBuilder = () => {
     <div className="container">
       <h2>Захиалга хуудас</h2>
       <Link to="/order">
-        <Button variant="outline-secondary" id="button-addon2">
+        <Button variant="primary" id="button-addon1">
           <BsPlusCircle /> Захиалга нэмэх
         </Button>{" "}
       </Link>
@@ -94,7 +94,7 @@ const HangamjBuilder = () => {
                   return (
                     <tr>
                       <th>
-                        <Link to={"/update/${item.id}"}>
+                        <Link to={'/update/${item.OID}'}>
                           <Button style={{color: 'blue'}}
                             variant="outline-secondary"
                             id="button-addon2"
@@ -107,7 +107,7 @@ const HangamjBuilder = () => {
                         <Button style={{color: 'red'}}
                           variant="outline-secondary"
                           id="button-addon2"
-                          onClick={() => onDeleteDevice(item.id)}
+                          onClick={() => onDeleteDevice(item.OID)}
                         >
                           <BsTrash />
                         </Button>
